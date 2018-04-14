@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html data-ng-app="routerApp" data-ng-controller="routerCtrl">
+<head>
+
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVx0nkq29c6RhPXKqomsCsosyHvkYvuo0&callback=initMap"
+	async defer></script>
+
+<script src="scripts/angular.min.js"></script>
+
+<link rel="stylesheet" href="styles/marker.css">
+<link rel="stylesheet" href="styles/customer-styles.css">
+<link rel="stylesheet" href="styles/desktop.css">
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/css/font-awesome.min.css">
+
+</head>
+<body onload="javascript: fnOnLoad();">
+
+	<div id="map"></div>
+
+	<div id="routes" align="center"
+		style="border: 1px solid black; display: none">
+		Routes <select name="Origin">
+		</select>
+	</div>
+
+	<!-- Hidden Input filed to trigger Angular Filter  -->
+	<input type='hidden' id='hiddenCity' />
+
+	<div id="infowindow-content">
+
+
+		<h3 id="place-name" align="center"
+			style="margin-bottom: 5px; border-bottom-color: #AAA; border-bottom-style: solid; border-bottom-width: 1px;"></h3>
+		<span style="padding: 0px 5px 5px 35px;"> <i
+			class="fa fa-chevron-circle-right" aria-hidden="true"></i> <a
+			data-ng-model="filterParam" data-ng-click="getFilteredData($event)"
+			onclick="javascript: fnLoadRoutes();" href="javascript:void(0);">Show
+				Destinations</a>
+		</span> <br> <span style="padding: 0px 5px 5px 35px;"> <i
+			class="fa fa-chevron-circle-right" aria-hidden="true"></i> <a
+			onclick="javascript: fnShowRoutes();" href="javascript:void(0);">Show
+				Routes</a>
+		</span>
+	</div>
+
+	<script>
+		// Angular JS application - Start
+		var app = angular.module("routerApp", []);
+
+		app.controller('routerCtrl',
+				function($scope, $http) {
+					$http.get('scripts/data.json').then(function(res) {
+						$scope.routes = res.data;
+					});
+
+					$scope.getFilteredData = function(active) {
+						$scope.filterParam = document
+								.getElementById('hiddenCity').value;
+					}
+
+				});
+
+		// Angular JS application - End
+
+		function fnOnLoad() {
+
+			document.getElementById('results').style.display = 'none';
+
+			document
+					.getElementById('results-summary')
+					.addEventListener(
+							'click',
+							function() {
+								document.getElementById('results').style.display = 'none';
+							});
+
+		}
+
+		// Global Gmap object
+		var map;
+		// Infowindow which comes on market click event
+		var infowindow;
+		// Variable to store infoWindow content
+		var infowindowContent;
+
+		var flightPath = null;
+
+		var geocoder;
+
+		var loadConfig;
+
+		function initMap() {
+
+			geocoder = new google.maps.Geocoder();
+
+			infowindow = new google.maps.InfoWindow();
+
+			var latlngbounds = new google.maps.LatLngBounds();
+
+			infowindowContent = document.getElementById('infowindow-content');
+
+			infowindow.setContent(infowindowContent);
+
+			var styledMapType = new google.maps.StyledMapType([ {
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#f5f5f5"
+				} ]
+			}, {
+				"elementType" : "labels.icon",
+				"stylers" : [ {
+					"visibility" : "off"
+				} ]
+			}, {
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#616161"
+				} ]
+			}, {
+				"elementType" : "labels.text.stroke",
+				"stylers" : [ {
+					"color" : "#f5f5f5"
+				} ]
+			}, {
+				"featureType" : "administrative.land_parcel",
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#bdbdbd"
+				} ]
+			}, {
+				"featureType" : "poi",
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#eeeeee"
+				} ]
+			}, {
+				"featureType" : "poi",
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#757575"
+				} ]
+			}, {
+				"featureType" : "poi.park",
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#e5e5e5"
+				} ]
+			}, {
+				"featureType" : "poi.park",
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#9e9e9e"
+				} ]
+			}, {
+				"featureType" : "road",
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#ffffff"
+				} ]
+			}, {
+				"featureType" : "road.arterial",
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#757575"
+				} ]
+			}, {
+				"featureType" : "road.highway",
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#dadada"
+				} ]
+			}, {
+				"featureType" : "road.highway",
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#616161"
+				} ]
+			}, {
+				"featureType" : "road.local",
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#9e9e9e"
+				} ]
+			}, {
+				"featureType" : "transit.line",
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#e5e5e5"
+				} ]
+			}, {
+				"featureType" : "transit.station",
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#eeeeee"
+				} ]
+			}, {
+				"featureType" : "water",
+				"elementType" : "geometry",
+				"stylers" : [ {
+					"color" : "#c9c9c9"
+				} ]
+			}, {
+				"featureType" : "water",
+				"elementType" : "labels.text.fill",
+				"stylers" : [ {
+					"color" : "#9e9e9e"
+				} ]
+			} ]
+
+			, {
+				name : 'Norwegian Map'
+			});
+
+			map = new google.maps.Map(document.getElementById('map'), {
+				zoom : 3,
+				center : new google.maps.LatLng(35.8, -370.3),
+				mapTypeControlOptions : {
+					mapTypeIds : [ 'styled_map' ]
+				}
+			//mapTypeId : 'roadmap'
+			});
+
+			map.mapTypes.set('styled_map', styledMapType);
+			map.setMapTypeId('styled_map');
+
+			var script = document.createElement('script');
+			script.src = 'scripts/data.js';
+			document.getElementsByTagName('head')[0].appendChild(script);
+		}
+
+		var source_dest_data = [];
+
+		window.eqfeed_callback = function(results) {
+			// Set config json
+			loadConfig = results.features;
+
+			for (var i = 0; i < results.features.length; i++) {
+				var coords = results.features[i].geometry.coordinates;
+				var latLng = new google.maps.LatLng(coords[1], coords[0]);
+
+				source_dest_data[i] = results.features[i];
+
+				var image = {
+					url : 'icons/triangle-16.ico',
+					scaledSize : new google.maps.Size(11, 11),
+					origin : new google.maps.Point(0, 0)
+				};
+
+				var marker = new google.maps.Marker({
+					position : latLng,
+					map : map,
+					icon : image
+				});
+
+				google.maps.event
+						.addListener(
+								marker,
+								'click',
+								function(e) {
+									infowindow.setPosition(e.latLng);
+									infowindow.open(map, this);
+									// Geocoder - Start
+									geocoder
+											.geocode(
+													{
+														'latLng' : e.latLng
+													},
+													function(results, status) {
+														if (status == google.maps.GeocoderStatus.OK) {
+															if (results[0]) {
+																var city = results[0].formatted_address;
+																city = fnCompare(city);
+																document
+																		.getElementById('place-name').innerText = city;
+																document
+																		.getElementById('hiddenCity').value = city;
+															}
+														}
+													});
+									// Geocoder - End
+
+								});
+
+			}
+		}
+
+		function fnCompare(city) {
+			for (var i = 0; i < loadConfig.length; i++) {
+				var c = loadConfig[i].geometry.title;
+				if (city.indexOf(c) !== -1) {
+					return c;
+					break
+				}
+			}
+		}
+
+		function fnLoadRoutes() {
+
+			document.getElementById('routeResult').style.display = 'block';
+			document.getElementById('results').style.display = 'block';
+
+			if (flightPath != null)
+				flightPath.setMap(null);
+
+			var flightPlanCoordinates = null;
+			//Latitude 
+			var coord1 = infowindow.getPosition().lat().toFixed(4);
+			//Longitude
+			var coord2 = infowindow.getPosition().lng().toFixed(4);
+
+			for (var i = 0; i < source_dest_data.length; i++) {
+				var coords = source_dest_data[i].geometry.coordinates;
+				if (coords[0].toFixed(4) == coord2
+						&& coords[1].toFixed(4) == coord1) {
+					flightPlanCoordinates = source_dest_data[i].destinations;
+					break;
+				}
+			}
+
+			if (flightPlanCoordinates == null
+					|| flightPlanCoordinates == 'undefined'
+					|| flightPlanCoordinates == '') {
+				alert('No destination flights for the selected city');
+				infowindow.close();
+				return;
+			}
+
+			flightPath = new google.maps.Polyline({
+				path : flightPlanCoordinates,
+				geodesic : true,
+				strokeColor : 'red',
+				strokeOpacity : 1.0,
+				strokeWeight : 2
+			});
+
+			flightPath.setMap(map);
+
+			infowindow.close();
+		}
+
+		function fnShowRoutes() {
+			alert('In-progress');
+			//document.getElementById("routes").style.display = "block";
+
+		}
+	</script>
+
+	<!-- Route results - Start -->
+	<div id='routeResult' style="display: none;">
+		<section id="results" class="pnl pnl-anchor-bottom results"
+			aria-expanded="true"
+			style="height: 153px; z-index: 1002; display: block;">
+			<div class="pnl-actions">
+				<button type="button" class="btn" aria-expanded="true"
+					style="display: inline-block;">
+					<span><i class="fa fa-times" aria-hidden="true"></i>&nbsp;</span><span
+						class="results-summary" id="results-summary"><b>Departure
+							Results List:</b> <strong>{{filterParam}}</strong></span>
+
+
+
+				</button>
+			</div>
+			<div class="pnl-content" id="pnl-content">
+				<header class="clearfix">
+					<form class="results-filter">
+						<div class="results-filter-fields">
+							<div class="field">
+								<h3>
+									<a href="#dropdown-filter-sort"
+										class="dropdown-toggle th-activecolor"
+										aria-controls="dropdown-filter-sort" aria-expanded="false"><span><i
+											class="fa fa-chevron-circle-down" aria-hidden="true"></i></span>&nbsp;Sort
+										by:</a>
+								</h3>
+								<div
+									class="dropdown dropdown-relative dropdown-tip dropdown-anchor-bottom dropdown-anchor-right"
+									id="dropdown-filter-sort" aria-hidden="true"
+									style="display: none;">
+									<ul class="dropdown-menu">
+
+										<li><label><input type="radio"
+												name="Destinations.SortBy" value="ArrivalCity"> <span>Destination</span></label></li>
+										<li><label><input type="radio"
+												name="Destinations.SortBy" value="NumberStops"> <span>Number
+													of Stops</span></label></li>
+										<li><label><input type="radio"
+												name="Destinations.SortBy" value="Distance"> <span>Distance</span></label></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</form>
+				</header>
+
+
+				<div class="results-scroller">
+					<div class="results-wrapper results-routes">
+						<div class="results-area results-list" style="max-height: 104px;">
+
+							<table>
+								<thead>
+									<tr>
+										<th><span><i class="fa fa-arrow-circle-o-up"
+												aria-hidden="true"></i></span> Leaving From</th>
+										<th><span><i class="fa fa-arrow-circle-o-down"
+												aria-hidden="true"></i></span> Going To</th>
+										<th><span><i class="fa fa-share-alt"
+												aria-hidden="true"></i></span> Stopping / Connecting Over</th>
+										<th><span><i class="fa fa-plane"
+												aria-hidden="true"></i></span> Airline</th>
+										<th><span><i class="fa fa-motorcycle"
+												aria-hidden="true"></i></span> Distance</th>
+										<td><a href="#dropdown-results-share"
+											class="btn btn-sml dropdown-toggle share-results-button"
+											aria-controls="dropdown-results-share" aria-expanded="false">Share
+												Results <span><i class="fa fa-share-alt"
+													aria-hidden="true"></i></span>
+										</a></td>
+									</tr>
+								</thead>
+								<tbody>
+
+
+									<tr class="th-l-activebg" id="result-summary-0"
+										data-ng-repeat="data in routes | filter:{departureCity: filterParam} ">
+
+										<td class="col-airport">{{data.departureCity}}<small>{{data.departureAirportName}}</small>
+											<small>{{data.departureCountry}}</small>
+										</td>
+
+										<td class="col-airport">{{data.arrivalCity}}<small>{{data.arrivalAirportName}}</small>
+											<small>{{data.arrivalCountry}}</small>
+										</td>
+
+										<td class="col-connect">
+											<p>Non-stop</p>
+										</td>
+
+										<td class="col-airline">
+											<p>{{data.operatingCarrier}}</p>
+										</td>
+
+										<td class="col-distance">{{data.distance}}</td>
+
+										<td class="col-action"><a href="#result-detail-0"
+											class="btn btn-sml">Details <span><i
+													class="fa fa-chevron-right" aria-hidden="true"></i></span></a> <a
+											href="javascript:void(0)" class="btn btn-sml th-d-bg">Book
+												a Flight <span><i class="fa fa-external-link"
+													aria-hidden="true"></i></span>
+										</a></td>
+
+									</tr>
+
+								</tbody>
+
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- Route results - End -->
+</body>
+</html>

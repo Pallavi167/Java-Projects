@@ -1,0 +1,176 @@
+html, body, button, input, select, textarea, .gm-style div, .gm-style span,
+	.gm-style label, .gm-style a {
+	font-family: Arial, sans-serif;
+}
+
+#map>div {
+	font-size: 100%;
+}
+
+.joyride-content-wrapper {
+	font-size: 120%;
+	font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode",
+		"Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans",
+		Verdana, "Verdana Ref", sans-serif;
+}
+
+.joyride-content-wrapper h3 {
+	font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode",
+		"Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans",
+		Verdana, "Verdana Ref", sans-serif;
+}
+
+.legend {
+	font-size: 100%;
+	background-color: #B9E0EC;
+	color:;
+}
+
+.legend select {
+	background-color:;
+	color:;
+}
+
+.legend-toggle {
+	border-color: #35A5C6;
+	background-color:;
+	color:;
+}
+
+.legend-toggle:focus, .legend-toggle:hover {
+	background-color:;
+	color:;
+}
+
+.map-marker-label {
+	color: #FFFFFF;
+	font-size: 10px !important;
+	text-shadow: 0 0 4px #003066, 0 0 3px #003066, 0 0 2px #003066, 0 0 2px
+		#003066;
+}
+
+.map-marker-label-direct {
+	color: #ffffff;
+	font-size: 10px !important;
+	text-shadow: 0 0 4px #0000ff, 0 0 3px #0000ff, 0 0 2px #0000ff, 0 0 2px
+		#0000ff;
+}
+
+.map-marker-label-connect {
+	color: #ffffff;
+	font-size: 10px !important;
+	text-shadow: 0 0 4px #0000ff, 0 0 3px #0000ff, 0 0 2px #0000ff, 0 0 2px
+		#0000ff;
+}
+
+.map-marker-label-hub {
+	color: #FFFFFF;
+	font-size: 10px !important;
+	text-shadow: 0 0 4px #ff0000, 0 0 3px #ff0000, 0 0 2px #ff0000, 0 0 2px
+		#ff0000;
+}
+
+.lt-ie10 ~ #site-wrapper .map-marker-label {
+	background-color: #003066;
+}
+
+.lt-ie10 ~ #site-wrapper .map-marker-label-direct {
+	background-color: #0000ff;
+}
+
+.lt-ie10 ~ #site-wrapper .map-marker-label-connect {
+	background-color: #0000ff;
+}
+
+.lt-ie10 ~ #site-wrapper .map-marker-label-hub {
+	background-color: #ff0000;
+}
+
+.pnlwrapper .pnl-content {
+	font-size: 100%;
+}
+
+.results {
+	font-size: 0.75em;
+}
+
+/*
+ * Themed colours
+ */
+
+/*= main color =*/
+.th-bg, .th-activebg:hover, .th-activebg.is-active, .ui-state-highlight,
+	.ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight
+	{
+	background-color: #666 !important;
+}
+
+.th-color, .th-color--before:before, .th-activecolor:hover,
+	.th-activecolor.is-active {
+	color: #666 !important;
+}
+
+@media ( max-width : 640px) {
+	.th-smallbg {
+		background-color: #666 !important;
+	}
+}
+
+/*= dark color =*/
+.th-d-bg, .th-d-activebg:hover, .th-d-activebg.is-active,
+	.ui-state-active, .ui-widget-content .ui-state-active,
+	.ui-widget-content .ui-state-active.ui-state-focus, .ui-widget-header .ui-state-active,
+	.ui-widget-header .ui-state-active.ui-state-focus, .th-d-bg.ui-state-hover,
+	.ui-widget-content .th-d-bg.ui-state-hover, .ui-widget-header .th-d-bg.ui-state-hover,
+	.th-d-bg.ui-state-focus, .ui-widget-content .th-d-bg.ui-state-focus,
+	.ui-widget-header .th-d-bg.ui-state-focus {
+	background-color: #222 !important;
+}
+
+.btn.th-d-bg {
+	color: #fff;
+}
+
+.btn.th-bg {
+	color: #fff;
+}
+
+.th-d-color, .th-d-activecolor:hover, .th-d-activecolor.is-active {
+	color: #222 !important;
+}
+
+.share-action-success {
+	border: 1px solid #098E26;
+	background: #098E26;
+	color: #fff;
+}
+
+.share-action-failure, .field-validation-error {
+	border: 1px solid #a00;
+	background: #c33;
+	color: #fff;
+}
+
+@media ( max-width : 640px) {
+	.th-d-smallbg {
+		background-color: #222 !important;
+	}
+}
+
+/*= light color =*/
+.th-l-bg, .th-l-activebg:hover, .th-l-activebg.is-active,
+	.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover,
+	.ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus
+	{
+	background-color: #eee !important;
+}
+
+.th-l-color, .th-l-activecolor:hover, .th-l-activecolor.is-active {
+	color: #eee !important;
+}
+
+@media ( max-width : 640px) {
+	.th-l-smallbg {
+		background-color: #eee !important;
+	}
+}

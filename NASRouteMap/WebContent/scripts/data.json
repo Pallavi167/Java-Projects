@@ -1,0 +1,142 @@
+[
+  {
+    "departureCity": "Oslo",
+    "departureAirportName": "Oslo Airport (OSL) Gardermoen",
+    "departureCountry": "Norway",
+    "arrivalCity": "London",
+    "arrivalAirportName": "Heathrow Airport (LHR) London",
+    "arrivalCountry": "United Kingdom",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "580 mi"
+  },
+  {
+    "departureCity": "Oslo",
+    "departureAirportName": "Oslo Airport (OSL) Gardermoen",
+    "departureCountry": "Norway",
+    "arrivalCity": "New York",
+    "arrivalAirportName": "New York Airport (NY) JFKennedy",
+    "arrivalCountry": "United States",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Oslo",
+    "departureAirportName": "Oslo Airport (OSL) Gardermoen",
+    "departureCountry": "Norway",
+    "arrivalCity": "Helsingfors",
+    "arrivalAirportName": "Helsinki Airport (HEL) Finland",
+    "arrivalCountry": "Finland",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Oslo",
+    "departureAirportName": "Oslo Airport (OSL) Gardermoen",
+    "departureCountry": "Norway",
+    "arrivalCity": "Stockholm",
+    "arrivalAirportName": "Stockholm Arlanda Airport (ARN) Sweden",
+    "arrivalCountry": "Sweden",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Oslo",
+    "departureAirportName": "Oslo Airport (OSL) Gardermoen",
+    "departureCountry": "Norway",
+    "arrivalCity": "København",
+    "arrivalAirportName": "Copenhagen Airport (CPH) Denmark",
+    "arrivalCountry": "Denmark",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Oslo",
+    "departureAirportName": "Oslo Airport (OSL) Gardermoen",
+    "departureCountry": "Norway",
+    "arrivalCity": "Frankfurt",
+    "arrivalAirportName": "Frankfurt Airport (FRA) Germany",
+    "arrivalCountry": "Germany",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Oslo",
+    "departureAirportName": "Oslo Airport (OSL) Gardermoen",
+    "departureCountry": "Norway",
+    "arrivalCity": "Paris",
+    "arrivalAirportName": "Paris Charles de Gaulle Airport (CDG) France",
+    "arrivalCountry": "France",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "London",
+    "departureAirportName": "Heathrow Airport (LHR) London",
+    "departureCountry": "United Kingdom",
+    "arrivalCity": "Oslo",
+    "arrivalAirportName": "Oslo Airport (OSL) Gardermoen",
+    "arrivalCountry": "Norway",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "NY",
+    "departureAirportName": "New York Airport (NY) JF Kennedy",
+    "departureCountry": "United States",
+    "arrivalCity": "Oslo",
+    "arrivalAirportName": "Oslo Airport (OSL) Gardermoen",
+    "arrivalCountry": "Norway",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Helsingfors",
+    "departureAirportName": "Helsinki Airport (HEL)",
+    "departureCountry": "Finland",
+    "arrivalCity": "Oslo",
+    "arrivalAirportName": "Oslo Airport (OSL) Gardermoen",
+    "arrivalCountry": "Norway",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Stockholm",
+    "departureAirportName": "Stockholm Arlanda Airport (ARN)",
+    "departureCountry": "Sweden",
+    "arrivalCity": "Oslo",
+    "arrivalAirportName": "Oslo Airport (OSL) Gardermoen",
+    "arrivalCountry": "Norway",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Copenhagen",
+    "departureAirportName": "Copenhagen Airport (CPH)",
+    "departureCountry": "Denmark",
+    "arrivalCity": "Oslo",
+    "arrivalAirportName": "Oslo Airport (OSL) Gardermoen",
+    "arrivalCountry": "Norway",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Frankfurt",
+    "departureAirportName": "Frankfurt Airport (FRA)",
+    "departureCountry": "Germany",
+    "arrivalCity": "Oslo",
+    "arrivalAirportName": "Oslo Airport (OSL) Gardermoen",
+    "arrivalCountry": "Norway",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  },
+  {
+    "departureCity": "Paris",
+    "departureAirportName": "Paris Charles de Gaulle Airport (CDG)",
+    "departureCountry": "France",
+    "arrivalCity": "Oslo",
+    "arrivalAirportName": "Oslo Airport (OSL) Gardermoen",
+    "arrivalCountry": "Norway",
+    "operatingCarrier": "Norwegian Air Shuttle",
+    "distance": "1256 mi"
+  }
+]
