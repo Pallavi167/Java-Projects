@@ -3,7 +3,7 @@ package com.fullstack.springboot.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Created by Sourabh Suman on 06/12/2017.
+ * Created by Pallavi
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Coordinates {

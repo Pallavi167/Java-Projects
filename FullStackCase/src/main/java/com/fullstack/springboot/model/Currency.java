@@ -1,7 +1,7 @@
 package com.fullstack.springboot.model;
 
 /**
- * Created by Sourabh Suman on 06/12/2017.
+ * Created by Pallavi
  */
 public enum Currency {
     EUR, USD

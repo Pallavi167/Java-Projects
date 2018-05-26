@@ -7,7 +7,7 @@ import com.fullstack.springboot.model.Location;
 import com.fullstack.springboot.model.LocationSearchResult;
 
 /**
- * Created by Sourabh Suman on 06/12/2017.
+ * Created by Pallavi
  */
 public interface AirportService {
 

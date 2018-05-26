@@ -14,7 +14,7 @@ import com.fullstack.springboot.service.FareService;
 
 
 /**
- * Created by Sourabh Suman on 06/12/2017.
+ * Created by Pallavi
  */
 @Service
 public class FareServiceImpl implements FareService {

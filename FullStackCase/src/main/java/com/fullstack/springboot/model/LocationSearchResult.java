@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
 import java.util.List;
 
 /**
- * Created by Sourabh Suman on 06/12/2017.
+ * Created by Pallavi
  */
 @JsonSerializableSchema
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -13,7 +13,7 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 
 /**
- * Created by Sourabh Suman on 06/12/2017.
+ * Created by Pallavi.
  */
 @Configuration
 @EnableWebSecurity
